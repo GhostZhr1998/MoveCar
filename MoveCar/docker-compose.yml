@@ -1,0 +1,35 @@
+services:
+  movecar-app:
+    build: .
+    container_name: movecar_app
+    restart: always
+    ports:
+      - "12580:3000" 
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - REDIS_URL=redis://movecar-redis:6379
+      - ADMIN_PASSWORD=zhr19981102 # 默认密码：123456，请修改为你自己的管理密码
+      
+      # 解决 Bark 通知海外阻断，配置局域网代理 (如需要请取消注释)
+      #- HTTP_PROXY=http://192.168.1.X:7890
+      #- HTTPS_PROXY=http://192.168.1.X:7890
+
+    depends_on:
+      - movecar-redis
+
+  movecar-redis:
+    image: redis:7-alpine
+    container_name: movecar_redis
+    restart: always
+    volumes:
+      - redis_data:/data 
+    command: redis-server --appendonly yes 
+
+volumes:
+  redis_data:
