@@ -14,7 +14,7 @@ services:
       - NODE_ENV=production
       - PORT=3000
       - REDIS_URL=redis://movecar-redis:6379
-      - ADMIN_PASSWORD=zhr19981102 # 默认密码：123456，请修改为你自己的管理密码
+      - ADMIN_PASSWORD=123456 # 默认密码：123456，请修改为你自己的管理密码
       
       # 解决 Bark 通知海外阻断，配置局域网代理 (如需要请取消注释)
       #- HTTP_PROXY=http://192.168.1.X:7890
