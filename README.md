@@ -41,10 +41,10 @@
 cd /你的/Docker/专属/目录
 
 # 2. 克隆本项目代码
-git clone https://github.com/nbbk/MoveCar-Docker-NB.git
+git clone https://github.com/GhostZhr1998/MoveCar.git
 
 # 3. 进入刚刚下载好的项目根目录
-cd MoveCar-Docker-NB
+cd MoveCar
 ```
 
 ### 2. 配置管理密码
