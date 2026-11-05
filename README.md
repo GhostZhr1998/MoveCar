@@ -1,4 +1,5 @@
-# 🚗 MoveCar Pro - 多用户智能挪车系统 (Docker 私有化部署版)
+# 🚗 MoveCar Pro - 多用户智能挪车系统 (Docker 私有化部署版) 新增鸿蒙MeoW通知支持
+原项目地址：https://github.com/nbbk/MoveCar-Docker-NB
 
 一个基于 Node.js + Redis 构建的现代化、高颜值、重隐私的智能挪车通知系统。专为 NAS (如飞牛 fnOS、群晖、绿联) 和个人云服务器设计，支持一键 Docker Compose 部署。
 
@@ -122,3 +123,4 @@ MoveCar Pro 提供了一个硬核的 **“JSON 模板热更新引擎”**。
 ## 🤝 鸣谢与贡献
 如果你觉得这个系统拯救了你的隐私，或者惊艳到了你，欢迎点亮 ⭐️ **Star** 支持一下！
 如果你有更好的海报模板 JSON，欢迎提交 PR 共享给所有人！
+原项目地址：https://github.com/nbbk/MoveCar-Docker-NB
