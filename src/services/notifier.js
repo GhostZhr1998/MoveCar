@@ -110,30 +110,40 @@ class Notifier {
         } catch (e) { console.error('❌ 邮件发送报错:', e.message); }
     }
 
-   //7.鸿蒙MeoW
-  static async sendMeow(meowUrl, title, content, confirmUrl) {
+//7.鸿蒙MeoW (支持多昵称并发发送)
+static async sendMeow(meowUrl, title, content, confirmUrl) {
     if (!meowUrl) return;
-    try {
-           const payload = {
-           title: title || "挪车通知",
-           msg: content,
-           url: confirmUrl // 很多客户端会自动识别这个字段
-          };
-     
-        const response = await fetch(meowUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-        
-        if (response.ok) {
-            console.log("✅ Meow 推送成功");
-        } else {
-            console.error("❌ Meow 推送失败, HTTP状态码:", response.status);
+    
+    // 1. 按照逗号拆分多个链接，并去掉空格
+    const urls = meowUrl.split(',').map(u => u.trim()).filter(u => u);
+    
+    // 2. 遍历每个链接，并发发送
+    const fetchPromises = urls.map(async (url) => {
+        try {
+            const payload = {
+                title: title || "挪车通知",
+                msg: content,
+                url: confirmUrl // 把链接放入 url 字段，Meow 会渲染成底部按钮
+            };
+            
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            
+            if (response.ok) {
+                console.log(`✅ Meow 推送成功: ${url}`);
+            } else {
+                console.error(`❌ Meow 推送失败: ${url}, 状态码:`, response.status);
+            }
+        } catch (error) {
+            console.error(`❌ Meow 推送异常: ${url}`, error.message);
         }
-    } catch (error) {
-        console.error("❌ Meow 推送失败:", error.message);
-    }
+    });
+
+    // 等待所有请求发送完成
+    await Promise.all(fetchPromises);
 }
 
     // 8. 通用 Webhook
