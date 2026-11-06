@@ -5,6 +5,7 @@
 
 经历了彻底的底层重构，MoveCar 现已进化为 **SaaS 级多用户平台**，告别繁琐的配置文件，全面拥抱 Web 可视化管理！
 
+同时推送多个Meow账户格式：https://api.chuckfang.com/用户名,https://api.chuckfang.com/用户名 （,为英文逗号）
 ---
 
 ## ✨ 颠覆性的核心特性
